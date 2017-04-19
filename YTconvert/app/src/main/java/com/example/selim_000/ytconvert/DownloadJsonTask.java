@@ -51,8 +51,6 @@ public class DownloadJsonTask extends AsyncTask<String, Void, String> {
         }
         return result;
     }
-
-    
     private String convertStreamToString(InputStream is){
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
         StringBuilder sb = new StringBuilder();
