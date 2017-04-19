@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">YTConvert</string>
+    <string name="download">Download !</string>
+    <string name="video_s_url">Video\'s URL</string>
+</resources>
