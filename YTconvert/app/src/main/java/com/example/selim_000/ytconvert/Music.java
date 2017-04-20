@@ -6,10 +6,10 @@ package com.example.selim_000.ytconvert;
 
 public class Music {
     private String title ="";
-    private int length = 0;
+    private String length = "";
     private String link ="";
 
-    public Music(String title, int length, String link) {
+    public Music(String title, String length, String link) {
         this.title = title;
         this.length = length;
         this.link = link;
@@ -23,11 +23,11 @@ public class Music {
         this.title = title;
     }
 
-    public int getLength() {
+    public String getLength() {
         return length;
     }
 
-    public void setLength(int length) {
+    public void setLength(String length) {
         this.length = length;
     }
 

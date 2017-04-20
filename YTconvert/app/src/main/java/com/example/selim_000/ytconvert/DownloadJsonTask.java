@@ -26,7 +26,9 @@ public class DownloadJsonTask extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String result) {
         try {
             JSONObject jsonObject= new JSONObject(result);
-            Music musique = new Music(jsonObject.getString("")) ;
+            Music musique = new Music(jsonObject.getString("title"),
+                                      jsonObject.getString("125"),
+                                      jsonObject.getString("link")) ;
         } catch (JSONException e) {
             e.printStackTrace();
         }
