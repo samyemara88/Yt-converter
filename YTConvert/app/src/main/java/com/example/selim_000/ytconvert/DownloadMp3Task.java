@@ -29,26 +29,26 @@ public class DownloadMp3Task extends AsyncTask<String, Void, String>{
 
     @Override
     protected String doInBackground(String... params) {
-        String url = params[0];
-        try {
+         try {
             URL aUrl = new URL( music.getLink() );
             URLConnection conn = aUrl.openConnection();
             int contentLength = conn.getContentLength();
 
             DataInputStream stream = new DataInputStream(aUrl.openStream());
-            byte[] buffer = new byte[contentLength ];
+            byte[] buffer = new byte[contentLength];
             stream.readFully(buffer);
             stream.close();
 
 
             DataOutputStream fos;
-            File myFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)+ music.getTitle()+".mp3");
+             Log.d("test", Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)+"/"+ music.getTitle()+".mp3");
+            File myFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)+"/"+ music.getTitle()+".mp3");
             fos = new DataOutputStream(new FileOutputStream(myFile));
             fos.write(buffer);
             fos.flush();
             fos.close();
 
-
+             Log.d("test", "end download");
 
         } catch (IOException e) {
             Log.e("YTConvert", "Error getting MP3 file : "+e.getMessage().toString());

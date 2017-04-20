@@ -30,10 +30,10 @@ public class DownloadJsonTask extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String result) {
         try {
             JSONObject jsonObject= new JSONObject(result);
-            Music musique = new Music(jsonObject.getString("title"),
+            Music music = new Music(jsonObject.getString("title"),
                                       jsonObject.getString("length"),
                                       jsonObject.getString("link")) ;
-            listener.IMusiqueListener(musique);
+            listener.IMusiqueListener(music);
         } catch (JSONException e) {
             e.printStackTrace();
         }

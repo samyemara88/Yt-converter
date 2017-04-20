@@ -1,10 +1,16 @@
 package com.example.selim_000.ytconvert;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        checkPermission();
         setContentView(R.layout.activity_main);
 
         text_url = (EditText)findViewById (R.id.editText);
@@ -34,9 +40,9 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void IMusiqueListener(Music m) {
 
-                        String url_download =  m.getLink().toString();
-                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url_download));
-                        startActivity(intent);
+
+                        DownloadMp3Task mp3Task = new DownloadMp3Task(m);
+                        mp3Task.execute();
 
                     }
                 });
@@ -45,5 +51,27 @@ public class MainActivity extends AppCompatActivity {
                 jsonTask.execute(last_url);
             }
         });
+    }
+
+    private void checkPermission(){
+
+        if(ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+
+            if(ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) ||
+                    ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.READ_EXTERNAL_STORAGE)){
+
+                new AlertDialog.Builder(this).setTitle("Access permission").setMessage("The App needs to access your local storage to download the file")
+                        .setPositiveButton("Allow", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                ActivityCompat.requestPermissions(MainActivity.this, new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.INTERNET}, 1);
+
+                            }
+                        }).create().show();
+            }ActivityCompat.requestPermissions(MainActivity.this, new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.INTERNET}, 1);
+
+        }
+
     }
 }
