@@ -20,15 +20,20 @@ import java.net.URLConnection;
 
 public class DownloadJsonTask extends AsyncTask<String, Void, String> {
 
+    private IMusiqueListener listener ;
 
+    public DownloadJsonTask(IMusiqueListener listener) {
+        this.listener = listener;
+    }
 
     @Override
     protected void onPostExecute(String result) {
         try {
             JSONObject jsonObject= new JSONObject(result);
             Music musique = new Music(jsonObject.getString("title"),
-                                      jsonObject.getString("125"),
+                                      jsonObject.getString("length"),
                                       jsonObject.getString("link")) ;
+            listener.IMusiqueListener(musique);
         } catch (JSONException e) {
             e.printStackTrace();
         }

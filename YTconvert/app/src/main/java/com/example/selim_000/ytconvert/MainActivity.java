@@ -7,17 +7,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+
 
 public class MainActivity extends AppCompatActivity {
-    private static final String URL_MUSIC_SEARCH = "//www.youtubeinmp3.com/fetch/?video=https://www.youtube.com/watch?v=i62Zjga8JOM";
+    private EditText text_url;
+    private  final String URL_MUSIC_SEARCH = "https://www.youtubeinmp3.com/fetch/?format=JSON&video=";
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        DownloadJsonTask jsonTask = new DownloadJsonTask();
-        jsonTask.execute(URL_MUSIC_SEARCH);
 
         setContentView(R.layout.activity_main);
+
+        text_url = (EditText)findViewById (R.id.editText);
 
         final Context context = this;
 
@@ -26,8 +29,20 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https:\\/\\/www.youtubeinmp3.com\\/download\\/get\\/?i=Gge7cDalLjlUvrJYjoTqC4O6b2b7s8Hr&e=42"));
-                startActivity(intent);
+
+                DownloadJsonTask jsonTask = new DownloadJsonTask(new IMusiqueListener() {
+                    @Override
+                    public void IMusiqueListener(Music m) {
+
+                        String url_download =  m.getLink().toString();
+                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url_download));
+                        startActivity(intent);
+
+                    }
+                });
+                String video_url =  text_url.getText().toString() ;
+                String last_url = URL_MUSIC_SEARCH + video_url ;
+                jsonTask.execute(last_url);
             }
         });
     }
