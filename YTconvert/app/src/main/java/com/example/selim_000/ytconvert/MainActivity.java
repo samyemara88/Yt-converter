@@ -24,11 +24,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         checkPermission();
+
         setContentView(R.layout.activity_main);
 
         text_url = (EditText)findViewById (R.id.editText);
 
-        final Context context = this;
 
         Button button = (Button) findViewById(R.id.button);
 
