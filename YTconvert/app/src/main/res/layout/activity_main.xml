@@ -5,31 +5,49 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.selim_000.ytconvert.MainActivity">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="5dp"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteY="36dp">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteX="5dp"
+        tools:layout_editor_absoluteY="36dp">
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Name"
+
+            tools:layout_editor_absoluteX="85dp"
+            tools:layout_editor_absoluteY="51dp" />
+    </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:layout_editor_absoluteX="5dp"
+        android:orientation="horizontal"
         tools:layout_editor_absoluteY="36dp">
-
-
-        <TextView
-            android:id="@+id/URL"
-            android:layout_width="375dp"
-            android:layout_height="92dp"
-            android:text="@string/video_s_url"
-            android:visibility="visible"
-            tools:layout_editor_absoluteX="6dp"
-            tools:layout_editor_absoluteY="2dp" />
-    </LinearLayout>
-
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
         android:text="Telecharger"
-        tools:layout_editor_absoluteX="122dp"
-        tools:layout_editor_absoluteY="206dp" />
+        tools:layout_editor_absoluteX="132dp"
+        tools:layout_editor_absoluteY="231dp" />
 
 
+    </LinearLayout>
+
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>
