@@ -50,7 +50,9 @@ public class DownloadMp3Task extends AsyncTask<String, Void, String>{
 
              Log.d("test", "end download");
 
-        } catch (IOException e) {
+        }
+
+        catch (IOException e) {
             Log.e("YTConvert", "Error getting MP3 file : "+e.getMessage().toString());
         }
         return null;
