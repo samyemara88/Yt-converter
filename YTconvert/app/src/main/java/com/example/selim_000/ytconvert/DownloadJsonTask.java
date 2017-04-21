@@ -31,10 +31,11 @@ public class DownloadJsonTask extends AsyncTask<String, Void, String> {
         try {
             JSONObject jsonObject= new JSONObject(result);
             Music music = new Music(jsonObject.getString("title"),
-                                      jsonObject.getString("length"),
-                                      jsonObject.getString("link")) ;
+                                    jsonObject.getString("length"),
+                                    jsonObject.getString("link")) ;
             listener.IMusiqueListener(music);
-        } catch (JSONException e) {
+        }
+        catch (JSONException e) {
             e.printStackTrace();
         }
     }
@@ -68,12 +69,15 @@ public class DownloadJsonTask extends AsyncTask<String, Void, String> {
             while((line = reader.readLine()) != null){
                 sb.append(line).append('\n');
             }
-        }catch (IOException e){
+        }
+        catch (IOException e){
             e.printStackTrace();
-        }finally {
+        }
+        finally {
             try {
                 is.close();
-            }catch (IOException e){
+            }
+            catch (IOException e){
                 e.printStackTrace();
             }
         }
