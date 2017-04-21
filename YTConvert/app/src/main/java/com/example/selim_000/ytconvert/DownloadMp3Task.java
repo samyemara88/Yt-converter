@@ -42,7 +42,7 @@ public class DownloadMp3Task extends AsyncTask<String, Void, String>{
 
             DataOutputStream fos;
 
-            File myFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)+"/"+ music.getTitle()+".mp3");
+            File myFile = new File(Environment.getExternalStorageDirectory()+"/Download/"+ music.getTitle()+".mp3");
             fos = new DataOutputStream(new FileOutputStream(myFile));
             fos.write(buffer);
             fos.flush();
